@@ -6,28 +6,46 @@ public class practice {
 
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
-		
-	    List<String> result = new ArrayList<>();
-	    boolean ck = true;
-	    while(true) {
-	    	String test = sc.next();
-	    	if(test.equals("0")) break;
-	    	
-	    	int len = (int) Math.ceil(test.length()/2);
-	    	for(int i=0; i<len; i++) {
-	    		if(test.charAt(i) != test.charAt(test.length()-1-i)) ck = false;
+	    
+	    int students = sc.nextInt();
+	    
+	    int classes [][] = new int[students][5];
+	    
+	    for(int i=0; i<students; i++) {
+	    	for(int j=0; j<5; j++) {
+	    		classes[i][j] = sc.nextInt();
 	    	}
-	    	
-	    	if (ck == true) result.add("yes");
-	    	else if(ck == false) result.add("no");
-	    	
-	    	ck = true;
 	    }
 	    
-	    for(int i=0; i<result.size(); i++) {
-	    	System.out.println(result.get(i));
+	    int count[] = new int[students];
+	    for(int i=0; i<students; i++) {
+	    	boolean arr[] = new boolean[students];
+	    	for(int j=0; j<arr.length; j++) {
+	    		arr[j] = false;
+	    	}
+	    	for(int j=0; j<5; j++) {
+	    		int s = classes[i][j];
+	    		for(int k=0; k<students; k++) {
+	    			if (s == classes[k][j]) arr[k] = true;
+	    		}
+	    	}
+	    	int cnt = 0;
+	    	for(int k =0; k<arr.length; k++) {
+	    		if (arr[k] == true) cnt++;
+	    	}
+	    	count[i] = cnt;
+	    	
+	    }
+	    int max = count[0];
+	    int maxidx=0;
+	    for(int i=0; i<count.length; i++) {
+	    	if(max < count[i]) {
+	    		max = count[i];
+	    		maxidx = i;
+	    	}
 	    }
 	    
+	    System.out.println(maxidx+1);
 	    
 	}
 }
