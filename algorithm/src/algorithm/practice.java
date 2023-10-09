@@ -1,40 +1,33 @@
 package algorithm;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class practice {
 
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
 		
-	    int result = 1;
-	    int count = 0;
-	    int[] arr = new int[5];
-	    
-	    for(int i = 0; i < 5; i++) {
-	    	arr[i] = sc.nextInt();
-	    }
-	    
+	    List<String> result = new ArrayList<>();
+	    boolean ck = true;
 	    while(true) {
-		    for(int i = 0; i < 5; i++) {
-		    	if(result % arr[i] == 0) {
-		    		count++;
-		    	}
-		    }
-			
-	    	if(count >= 3){
-	    		System.out.println(result);
-				break;
+	    	String test = sc.next();
+	    	if(test.equals("0")) break;
+	    	
+	    	int len = (int) Math.ceil(test.length()/2);
+	    	for(int i=0; i<len; i++) {
+	    		if(test.charAt(i) != test.charAt(test.length()-1-i)) ck = false;
 	    	}
-	    
-			result++;
-			count = 0;
+	    	
+	    	if (ck == true) result.add("yes");
+	    	else if(ck == false) result.add("no");
+	    	
+	    	ck = true;
 	    }
-
-
+	    
+	    for(int i=0; i<result.size(); i++) {
+	    	System.out.println(result.get(i));
+	    }
 	    
 	    
-	        
 	}
-
 }
